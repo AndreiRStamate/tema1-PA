@@ -1,0 +1,84 @@
+Stamate Robert Andrei
+325CC
+
+Problema 1 - crypto
+
+Am sortat vectorul de calculatoare cu ajutorul functiei qsort din C si apoi
+am cautat valoarea maxima de upgrade dupa modelul cautarii binare.
+
+In cazul in care raman bani dupa aducerea tuturor calculatoarelor la nivelul
+celui mai performant calculator, restul banilor se foloseste pentru a upgrada
+toate calculatoarele.
+
+Complexitate temporala: O(nlogn)
+Complexitate spatiala: O(n)
+
+	* n = numarul de calculatoare
+
+Problema 2 - Stocks
+
+Am observat ca problema se aseamana cu problema rucsacului din laborator,
+singura diferenta fiind aparitia unei noi dimensiuni (cea a pierderilor
+maxime). 
+La fiecare pas se retine cea mai buna solutie, tinand cont atat de pretul
+actiunii cat si de pierderea maxima acceptata.
+
+Cazul de baza: dp[0][b][l] = 0 (pentru nicio actiune cumparata profitul
+este mereu 0).
+
+Cazul general: alegem sau nu sa cumparam o actiune. Daca nu o cumparam
+atunci pastram actiunea de la pasul anterior, altfel rezervam loc in
+"ghiozdan", pentru pretul actiunii (preturi[n]) si profit minim (minime[n]).
+
+Solutia se gaseste in ultimul element al matricei, dupa rezolvarea
+tuturor subproblemelor.
+
+Complexitate temporala: O(N*B*L)
+Complexitate spatiala: O(N*B*L)
+	
+	* N = numarul de actiuni
+	* B = bugetul
+	* L = pierderea maxima
+
+Problema 3 - valley
+
+Am observat ca pentru eficienta maxima, pozitia comuna prefixului si sufixului
+este un punct minim.
+In cazul in care punctul minim se afla fix la inceput sau fix la sfarsitul
+vectorului de inaltimi, acesta trebuie deplasat ori la dreapta ori la stanga.
+
+Dupa stabilirea punctului comun, conform celor de mai sus se construieste un
+sir descrescator intre inceput si punctul comun si o rampa de la punctul
+comun la final. (asa cum sunt ele definite in cerinta problemei).
+
+Complexitate temporala: O(N)
+Complexitate spatiala: O(N)
+
+	* N = numarul de inaltimi
+
+Problema 4 - ridge
+
+Am obeservat ca un munte trebuie sapat de cel mult 2 ori:
+Deloc - daca nu este la fel de inalt ca vecinul;
+O data - daca este la fel de inalt ca vecinul din stanga;
+De doua ori - daca dupa prima sapare devine la fel de inalt ca
+				vecinul din dreapta
+
+=> se creeaza o matrice dp de dimensiune N x 3
+
+Cazul de baza:
+	dp[0][0] nu se sapa deloc
+	dp[0][1] se sapa o data
+	dp[0][2] se sapa de doua ori
+
+Caz general:
+	dp[i][j] = j * C[i] + minim 
+
+	* minim = minimul dintre minimurile elementelor sapate de 0, 1 sau 2 ori
+
+Solutia se obtine calculand minimul elementelor de pe ultima linie a matricei.
+
+Complexitate temporala: O(N)
+Complexitate spatiala: O(N)
+
+	* N = numarul de munti
